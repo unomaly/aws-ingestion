@@ -1,0 +1,52 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: This template deploys a lambda function to send cloudwatch logs to Unomaly
+Parameters:
+  UnomalyHost:
+    Type: String
+    Default: ''
+    Description: Your Unomaly host URL
+  BatchSize:
+    Type: Number
+    Default: 100
+    Description: Unomaly event batch size. Increasing it can lead to better performance but higher memory requirements.
+  KeepTimestamp:
+    Type: String
+    Default: true
+    Description: Keep event timestamp. If false, Unomaly will use the ingestion timestamp as the event timestamp.
+  AcceptSelfSignedCerts:
+    Type: String
+    Default: false
+    Description: If true, self- signed SSL certs will be accepted
+  LogGroupName:
+    Type: String
+    Default: ''
+    Description: Cloudwatch log group to subscribe to
+  FilterPattern:
+    Type: String
+    Default: ''
+    Description: Filter to select which logs to send
+Resources:
+  UnomalyCloudwatchLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: Sends Cloudwatch logs to Unomaly
+      MemorySize: 128
+      Environment:
+        Variables:
+          UNOMALY_HOST: !Ref UnomalyHost
+          BATCH_SIZE: !Ref BatchSize
+          ACCEPT_SELF_SIGNED_CERTS: !Ref AcceptSelfSignedCerts
+          KEEP_TIMESTAMP: !Ref KeepTimestamp
+      Handler: cloudwatch
+      Timeout: 10
+      CodeUri:
+        Bucket: unomaly
+        Key: releases/aws/lambdas/cloudwatch.zip
+      Runtime: go1.x
+      Events:
+        LogsProcessor:
+          Type: CloudWatchLogs
+          Properties:
+            LogGroupName: !Ref LogGroupName
+            FilterPattern: ""
