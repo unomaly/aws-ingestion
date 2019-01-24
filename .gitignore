@@ -4,3 +4,4 @@ main
 *.zip
 /cloudwatch/cloudwatch
 /cloudwatch/cloudwatch-*/
+/cloudwatch/vendor/
