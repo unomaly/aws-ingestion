@@ -6,7 +6,7 @@ This repo contains lambdas to push logs from AWS to [Unomaly](https://unomaly.co
 ## Ingesting cloudwatch logs
 
 
-You can easily setup cloudwatch logs ingestion by starting this [Cloud formation stack](https://console.aws.amazon.com/cloudformation/home#/stacks/new?stackName=unomaly-cloudwatch&templateURL=https://s3-eu-west-1.amazonaws.com/unomaly/releases/aws/sam/sam-cloudwatch-logs.yml).
+You can easily setup cloudwatch logs ingestion by starting this [Cloud formation stack](https://console.aws.amazon.com/cloudformation/home#/stacks/new?stackName=unomaly-cloudwatch&templateURL=https://s3-eu-west-1.amazonaws.com/unomaly/releases/aws/cloudwatch-0.1.0/sam-cloudwatch-logs.yml).
 It will create the lambda function as well as the subscription to the log group of your choice.
 
 ![Cloudwatch lambda architecture](cloudwatch/architecture.png)
