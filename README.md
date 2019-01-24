@@ -1,3 +1,7 @@
+
+[![Build Status](https://travis-ci.org/unomaly/aws-ingestion.svg?branch=master)](https://travis-ci.org/unomaly/aws-ingestion)
+
+
 # AWS ingestion lambdas
 
 This repo contains lambdas to push logs from AWS to [Unomaly](https://unomaly.com)
