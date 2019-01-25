@@ -42,7 +42,7 @@ Resources:
       Timeout: 10
       CodeUri:
         Bucket: unomaly
-        Key: releases/aws/lambdas/cloudwatch.zip
+        Key: releases/aws/cloudwatch-0.1.0/cloudwatch.zip
       Runtime: go1.x
       Events:
         LogsProcessor:
